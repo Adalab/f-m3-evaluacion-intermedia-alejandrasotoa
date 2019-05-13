@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import PokeList from './components/PokeList';
 
 const pokemonList = [
   { "id": 1, "name": "bulbasaur", "types": ["poison", "grass"], "evolution": null, "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" },
@@ -14,23 +15,17 @@ const pokemonList = [
   { "id": 10, "name": "caterpie", "types": ["bug"], "evolution": null, "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png" }
 ];
 
-function App() {
-  const newArray = pokemonList.map((pokemon, index) => {
+class App extends React.Component {
+  render() {
     return (
-      <li key={index}>
-        <img className="pokemon__image" src={pokemon.url} alt={pokemon.name} />
-      </li>
-    )
-  })
-
-  return (
-    <div className="App">
-      <h1 className="main__title">Mi lista de Pokemon</h1>
-      <ul className="pokemon__list">
-        {newArray}
-      </ul>
-    </div>
-  );
+      <div className="App">
+        <h1 className="main__title">Mi lista de Pokemon</h1>
+        <ul className="pokemon__list">
+          <PokeList arrayList={pokemonList} />
+        </ul>
+      </div>
+    );
+  }
 }
 
 export default App;
