@@ -1,4 +1,5 @@
 import React from 'react';
+import TypeList from './TypeList';
 
 class Pokemon extends React.Component {
   render () {
@@ -11,10 +12,7 @@ class Pokemon extends React.Component {
         />
         <h2 className="pokemon__name">{this.props.pokemonName}</h2>
         <ul className="pokemon__types">
-          {this.props.pokemonType.map ((type, index) => {
-            return <li className="type__list" key={index}> {type}</li>;
-          })}
-
+        <TypeList typeArray={this.props.pokemonType} />
         </ul>
       </div>
     );
