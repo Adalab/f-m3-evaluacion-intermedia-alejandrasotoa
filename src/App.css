@@ -5,6 +5,7 @@
 .pokemon__list {
   list-style: none;
   margin: 0;
+  padding: 0;
   display: flex;
   flex-wrap: wrap;
 }
@@ -27,4 +28,24 @@
 
 .pokemon__name {
   text-transform: capitalize;
+}
+
+.pokemon__types {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.type__list {
+  text-transform: uppercase;
+  color: white;
+  background-color: grey;
+  padding: 2px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.type__list:first-child {
+  margin-right: 5px;
 }

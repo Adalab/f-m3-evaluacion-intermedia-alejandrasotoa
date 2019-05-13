@@ -1,4 +1,5 @@
 import React from 'react';
+import Pokemon from './Pokemon';
 
 class PokeList extends React.Component {
   render () {
@@ -6,11 +7,9 @@ class PokeList extends React.Component {
     const newArray = this.props.arrayList.map((pokemon, index) => {
         return (
           <li key={index} className="pokemon__item">
-            <div className="pokemon__item--container">
-              <img className="pokemon__image" src={pokemon.url} alt={`Imagen de ${pokemon.name}`} />
-              <h2 className="pokemon__name">{pokemon.name}</h2>
-            </div>
+            <Pokemon pokemonURl={pokemon.url} pokemonName={pokemon.name} pokemonType={pokemon.types} />
           </li>
+
         )
       })
     return newArray;
