@@ -1,28 +1,42 @@
 import React from 'react';
-import './App.css';
 import PokeList from './components/PokeList';
-
-const pokemonList = [
-  { "id": 1, "name": "bulbasaur", "types": ["poison", "grass"], "evolution": null, "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" },
-  { "id": 2, "name": "ivysaur", "types": ["poison", "grass"], "evolution": "bulbasaur", "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png" },
-  { "id": 3, "name": "venusaur", "types": ["poison", "grass"], "evolution": "ivysaur", "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png" },
-  { "id": 4, "name": "charmander", "types": ["fire"], "evolution": null, "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png" },
-  { "id": 5, "name": "charmeleon", "types": ["fire"], "evolution": "charmander", "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png" },
-  { "id": 6, "name": "charizard", "types": ["flying", "fire"], "evolution": "charmeleon", "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png" },
-  { "id": 7, "name": "squirtle", "types": ["water"], "evolution": null, "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png" },
-  { "id": 8, "name": "wartortle", "types": ["water"], "evolution": "squirtle", "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png" },
-  { "id": 9, "name": "blastoise", "types": ["water"], "evolution": "wartortle", "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/9.png" },
-  { "id": 10, "name": "caterpie", "types": ["bug"], "evolution": null, "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png" }
-];
+import pokemonList from './data/data';
+import './App.css';
+import MyFavorites from './components/MyFavorites';
 
 class App extends React.Component {
-  render() {
+  constructor (props) {
+    super (props);
+    this.state = {
+      pokemon: pokemonList,
+      favorite: [],
+    };
+    this.isFavorite = this.isFavorite.bind (this);
+  }
+
+  isFavorite (event) {
+    const favoriteID = parseInt (event.currentTarget.id);
+    this.setState (prevState => {
+      let handleFavorite;
+      if (prevState.favorite.includes (favoriteID)) {
+        handleFavorite = prevState.favorite.filter (fav => fav !== favoriteID);
+      } else {
+        handleFavorite = [...prevState.favorite, favoriteID];
+      }
+      return {favorite: handleFavorite};
+    });
+  }
+
+  render () {
     return (
       <div className="App">
         <h1 className="main__title">Mi lista de Pokemon</h1>
-        <ul className="pokemon__list">
-          <PokeList arrayList={pokemonList} />
-        </ul>
+        <MyFavorites favoritesArray={this.state.favorite} />
+        <PokeList
+          arrayList={this.state.pokemon}
+          favoritesArray={this.state.favorite}
+          isFavorite={this.isFavorite}
+        />
       </div>
     );
   }

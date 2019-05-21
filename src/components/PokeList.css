@@ -1,0 +1,19 @@
+.pokemon__item {
+  margin: 10px;
+  cursor: pointer;
+}
+
+.pokemon__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 900px;
+}
+
+.favorite {
+  background-color: lightcoral;
+  box-shadow: 0 0 10px blue;
+}
