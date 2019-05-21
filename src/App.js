@@ -2,7 +2,6 @@ import React from 'react';
 import PokeList from './components/PokeList';
 import pokemonList from './data/data';
 import './App.css';
-import MyFavorites from './components/MyFavorites';
 
 class App extends React.Component {
   constructor (props) {
@@ -31,7 +30,6 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1 className="main__title">Mi lista de Pokemon</h1>
-        <MyFavorites favoritesArray={this.state.favorite} />
         <PokeList
           arrayList={this.state.pokemon}
           favoritesArray={this.state.favorite}
